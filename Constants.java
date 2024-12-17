@@ -16,9 +16,20 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
-  public static class TalonFXConstants {
-    public static final int TALONFX_MOTOR_ONE_ID = 0;
-    public static final int  TALONFX_MOTOR_TWO_ID= 0;
+  public static class Subsystem{
+      public static class Talonfx  {
+          public static class ID{
+          public static final int TALONFX_MOTOR_PRIMARY_ID = 0;
+          public static final int  TALONFX_MOTOR_SECONDARY_ID = 0;
+        }
+
+        public static class PIDValues{
+          public static final int KP = 1;
+          public static final int KI = 1;
+          public static final int KD = 1;
+        }
+    }
   }
+
 
 }

@@ -11,26 +11,28 @@ public class FlywheelShooterCommand extends Command {
   /** Creates a new FlywheelShooterCommand. */
   private final FlywheelShooterSubsystem shooterSubsystem;
 
-  public FlywheelShooterCommand(FlywheelShooterSubsystem subsystem) {
-    shooterSubsystem = subsystem;
-    addRequirements(subsystem);
+  public FlywheelShooterCommand(FlywheelShooterSubsystem shooterSubsystem) {
+    this.shooterSubsystem = shooterSubsystem;
+    addRequirements(shooterSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    this.shooterSubsystem.setPIDSetPointInRPS(500);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double pidResultInRPM = this.shooterSubsystem.calculatePID(3000); //calculates the PID with a given setpoint (3000RPM in this case)
-    this.shooterSubsystem.setMotorsSpeedInRPM(pidResultInRPM);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    this.shooterSubsystem.setPIDSetPointInRPS(0);
+  }
 
   // Returns true when the command should end.
   @Override
